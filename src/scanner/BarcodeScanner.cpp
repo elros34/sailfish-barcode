@@ -264,7 +264,7 @@ BarcodeScanner::Private::stopScanning()
 void
 BarcodeScanner::Private::grabImage()
 {
-        static grabImageFinished = false;
+        static bool grabImageFinished = false;
     QQuickWindow* window = iViewFinderItem->window();
     if (window) {
         BarcodeScanner* parent = scanner();
