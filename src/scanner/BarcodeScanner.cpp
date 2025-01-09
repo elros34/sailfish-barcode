@@ -269,7 +269,12 @@ BarcodeScanner::Private::grabImage()
         iNeedImage = false;
         iGrabbing = true;
         Q_EMIT parent->grabbingChanged();
-        QImage image = window->grabWindow();
+        //QImage image = window->grabWindow();
+        auto grabResult = window->grabToImage();
+        if (grabResult == nullptr)
+                return;
+        while (grabResult->image() != nullptr);
+        QImage image = grabResult->image();
         iGrabbing = false;
         Q_EMIT parent->grabbingChanged();
         if (!image.isNull() && iScanning) {
