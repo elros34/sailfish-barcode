@@ -274,19 +274,20 @@ BarcodeScanner::Private::grabImage()
         iGrabbing = true;
         Q_EMIT parent->grabbingChanged();
         //QImage image = window->grabWindow();
-        auto grabResult = window->contentItem()->grabToImage();
+        auto grabResult = iViewFinderItem->grabToImage();
         if (grabResult == nullptr)
                 return;
-        connect(grabResult.data(), &QQuickItemGrabResult::ready, [=, &grabImageFinished]() {
+        connect(grabResult.data(), &QQuickItemGrabResult::ready, iViewFinderItem, [=, &grabImageFinished]() {
                 qDebug() << "got async grab image";
                 grabImageFinished = true;
         });
         //while (grabResult->image().isNull());
         //QImage image = grabResult->image();
             
-        qDebug() << "loop into grabImageFinished";
-        while (!grabImageFinished);
-        qDebug() << "out of loop";
+        //qDebug() << "loop into grabImageFinished";
+        //while (!grabImageFinished);
+        //qDebug() << "out of loop";
+        QThread::msleep(1000);
 
         QImage image = grabResult->image();
         grabImageFinished = false;
