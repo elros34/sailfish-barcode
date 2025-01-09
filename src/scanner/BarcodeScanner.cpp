@@ -277,9 +277,9 @@ BarcodeScanner::Private::grabImage()
         auto grabResult = iViewFinderItem->grabToImage();
         if (grabResult == nullptr)
                 return;
-        connect(grabResult.data(), &QQuickItemGrabResult::ready, iViewFinderItem, [=, &grabImageFinished]() {
+        connect(grabResult.data(), &QQuickItemGrabResult::ready, iViewFinderItem, [=]() {
                 qDebug() << "got async grab image";
-                grabImageFinished = true;
+               // grabImageFinished = true;
         });
         //while (grabResult->image().isNull());
         //QImage image = grabResult->image();
