@@ -36,6 +36,8 @@ THE SOFTWARE.
 #include <QtGui/QPainter>
 #include <QtQuick/QQuickItem>
 #include <QtQuick/QQuickWindow>
+#include <QSharedPointer>
+#include <QQuickItemGrabResult>
 
 #include <zxing/DecodeHints.h>
 
