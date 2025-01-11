@@ -163,7 +163,7 @@ BarcodeScanner::Private::Private(BarcodeScanner* aParent) :
 
 BarcodeScanner::Private::~Private()
 {
-        qDebug() << "destructor"
+        qDebug() << "destructor";
     stopScanning();
     iDecodingFuture.waitForFinished();
 }
