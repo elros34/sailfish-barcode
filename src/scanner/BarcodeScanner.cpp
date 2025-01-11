@@ -163,6 +163,7 @@ BarcodeScanner::Private::Private(BarcodeScanner* aParent) :
 
 BarcodeScanner::Private::~Private()
 {
+        qDebug() << "destructor"
     stopScanning();
     iDecodingFuture.waitForFinished();
 }
@@ -272,8 +273,9 @@ BarcodeScanner::Private::grabImage()
         HDEBUG("grabbing image");
         iNeedImage = false;
         iGrabbing = true;
-        Q_EMIT parent->grabbingChanged();
+        //Q_EMIT parent->grabbingChanged();
         //QImage image = window->grabWindow();
+        qDebug() << "iViewFinderItem: " << iViewFinderItem;
         auto grabResult = iViewFinderItem->grabToImage();
         qDebug() << "grabResult: " << grabResult;
         if (grabResult == nullptr)
@@ -291,6 +293,7 @@ BarcodeScanner::Private::grabImage()
         //qDebug() << "out of loop";
         QThread::msleep(1000);
 
+        /*
         QImage image = grabResult->image();
         grabImageFinished = false;
             
@@ -305,6 +308,7 @@ BarcodeScanner::Private::grabImage()
             iDecodingEvent.wakeAll();
             iDecodingMutex.unlock();
         }
+        */
     }
 }
 
